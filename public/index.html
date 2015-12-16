@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<!-- ASSIGN OUR ANGULAR MODULE -->
+<html ng-app="callBack">
+<head>
+    <!-- META -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+
+    <title>Node/Angular Members App</title>
+
+    <!-- SCROLLS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"><!-- load bootstrap -->
+    <link rel="stylesheet" href="main.css">
+    <style>
+        html                    { overflow-y:scroll; }
+        body                    { padding-top:50px; }
+        #header {
+            margin-bottom:30px;
+            border-bottom: 1px solid #dddddd;
+            padding-bottom: 20px;
+        }
+        #footer {
+            border-top: 1px solid #dddddd;
+            padding-top: 10px;
+        }
+        .table td {
+            text-align: center;
+        }
+        .table th {
+            text-align: center;
+        }
+        #info-panel {
+            text-align: center;
+            padding-bottom: 20px;
+
+        }
+
+
+    </style>
+
+    <!-- SPELLS -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script><!-- load jquery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.7/angular.min.js"></script><!-- load angular -->
+    <script src="js/core.js"></script>
+    <script src="js/controllers/main.js"></script>
+    <script src="js/services/members.js"></script>
+
+</head>
+<!-- SET THE CONTROLLER AND GET ALL Members -->
+<body ng-controller="mainController">
+
+<!-- Start Container -->
+    <div class="container">
+        <!-- Start Panel -->
+        <div class="row" id="info-panel">
+            <div class="col-xs-12">
+                <div class="panel panel-info">
+                        <h1>callBack 359-09-37</h1>
+                </div>
+            </div>
+        </div>
+
+        <!-- End Panel -->
+        <!-- Start Header -->
+        <div class="row" id="header">
+            <form>
+            <div class="col-xs-2">
+                <button class="btn btn-default" type="button">
+                    Members <span class="badge">{{ members.length }}</span>
+                </button>
+            </div>
+            <div class="col-xs-9">
+
+                    <div class="form-group">
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control text-center" placeholder="phone" ng-model="formData.phoneNumber">
+                        </div>
+                        <div class="col-xs-6">
+                            <input type="text" class="form-control text-center" placeholder="name" ng-model="formData.memberName">
+                        </div>
+
+                    </div>
+            </div>
+            <div class="col-xs-1">
+                <button type="submit" class="btn btn-primary" ng-click="createMember()">Add</button>
+            </div>
+            </form>
+        </div>
+        <!-- End Header -->
+        <!-- Start mainPart -->
+        <div id="member-list" class="row">
+            <div class="col-xs-2">
+
+            </div>
+
+            <div class="col-xs-10 col-xs-offset-2">
+                <table class="table table-hover table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Phone</th>
+                            <th>Name</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr  ng-repeat="member in members">
+                            <td width="40%">{{member.phoneNumber}}</td>
+                            <td width="45%">{{member.memberName}}</td>
+                            <td width="15%">
+<!--                                <a class="btn btn-sm btn-warning" href="">Edit</a>
+-->
+                                <a class="btn btn-sm btn-danger" href="" ng-click="deleteMember(member.id)">Delete</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!-- End mainPart -->
+        <!-- Start Footer -->
+        <div class="row" id="footer">
+            <div class="col-xs-12">
+                ver 0.4.19
+            </div>
+        </div>
+        <!-- End Footer -->
+    </div>
+<!-- End Container -->
+
+</body>
+</html>
